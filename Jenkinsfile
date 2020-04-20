@@ -1,9 +1,9 @@
 node {
     checkout scm
 
-    def customImage = docker.build("hello-world:${env.BUILD_ID}")
+    def customImage = docker.build("openjdk:${env.BUILD_ID}")
 
     customImage.inside {
-        sh 'USER delver'
+        sh 'java -version'
     }
 }
