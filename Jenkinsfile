@@ -1,11 +1,9 @@
-pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-                sh 'svn --version'
-            }
-        }
+node {
+    checkout scm
+
+    def customImage = docker.build("hello-world:${env.BUILD_ID}")
+
+    customImage.inside {
+        sh 'USER delver'
     }
 }
