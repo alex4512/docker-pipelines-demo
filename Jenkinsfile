@@ -2,8 +2,10 @@ node {
     checkout scm
 
     def customImage = docker.build("openjdk:${env.BUILD_ID}")
-
+    /* def mvn = docker.build("maven:3-alpine:${env.}*/
     customImage.inside {
-        sh 'java -version'
+       echo $env.BUILD_ID
+        
     }
+   
 }
